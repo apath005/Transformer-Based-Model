@@ -3,6 +3,7 @@
 Simplified example of how a neural network model for natural language processing (NLP), like GPT, might be structured using libraries like PyTorch.
 
 Here’s an extremely simplified version of a transformer-based model, which is a core part of models like GPT:
+
 '''
 import torch
 import torch.nn as nn
@@ -42,6 +43,7 @@ output = model(src)
 
 print(output.shape)  # Expected output: (2, 10, vocab_size)
 '''
+
 This example showcases the architecture of a very simplified transformer model that could be used for NLP tasks. It includes:
 	•	Embedding: Converts input tokens (word indices) into continuous vectors.
 	•	Transformer: The core part of the model using self-attention to process the input.
