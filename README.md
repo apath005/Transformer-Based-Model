@@ -127,6 +127,8 @@ Key components of the transformer architecture and how you might implement them 
 
 First, let’s implement the Scaled Dot-Product Attention which is the core of self-attention.
 
+```
+
 import torch
 import torch.nn.functional as F
 
@@ -147,11 +149,11 @@ class ScaledDotProductAttention(torch.nn.Module):
         # Multiply attention weights with value
         output = torch.matmul(attention_weights, value)  # (batch_size, seq_len, embed_size)
         return output, attention_weights
-
+```
 2. Multi-Head Attention
 
 The multi-head attention mechanism allows the model to focus on different parts of the input sequence simultaneously. Here’s how to implement it:
-
+```
 class MultiHeadAttention(torch.nn.Module):
     def __init__(self, embed_size, num_heads):
         super(MultiHeadAttention, self).__init__()
@@ -194,11 +196,11 @@ class MultiHeadAttention(torch.nn.Module):
         output = output.view(output.size(0), output.size(1), -1)  # (batch_size, seq_len, embed_size)
 
         return self.out_linear(output), attention_weights
-
+```
 3. Feed-Forward Neural Network
 
 After attention, we typically have a position-wise feed-forward neural network to refine the output further.
-
+```
 class FeedForwardNetwork(torch.nn.Module):
     def __init__(self, embed_size, ff_size, dropout=0.1):
         super(FeedForwardNetwork, self).__init__()
@@ -213,11 +215,11 @@ class FeedForwardNetwork(torch.nn.Module):
         x = self.dropout(x)
         x = self.fc2(x)  # (batch_size, seq_len, embed_size)
         return x
-
+```
 4. Transformer Block
 
 Now that we have the multi-head attention and feed-forward network, we can combine them into a full transformer block. This will include residual connections and layer normalization for stability.
-
+```
 class TransformerBlock(torch.nn.Module):
     def __init__(self, embed_size, num_heads, ff_size, dropout=0.1):
         super(TransformerBlock, self).__init__()
@@ -237,11 +239,11 @@ class TransformerBlock(torch.nn.Module):
         x = self.layer_norm2(x + self.dropout(ff_output))
 
         return x
-
+```
 5. Putting It All Together: A Simple Transformer Model
 
 Now, let’s implement a simplified transformer model by stacking multiple transformer blocks.
-
+```
 class TransformerModel(torch.nn.Module):
     def __init__(self, vocab_size, embed_size, num_heads, num_layers, ff_size, dropout=0.1):
         super(TransformerModel, self).__init__()
@@ -259,11 +261,11 @@ class TransformerModel(torch.nn.Module):
 
         x = self.fc_out(x)
         return x
-
+```
 6. Putting It All Together: Example Usage
 
 Let’s assume we’re working with a dummy dataset and want to process it through the model. This is how you can run a forward pass:
-
+```
 # Model hyperparameters
 vocab_size = 10000  # Example vocabulary size
 embed_size = 512
@@ -280,7 +282,7 @@ input_seq = torch.randint(0, vocab_size, (2, 10))  # Random word indices
 output = model(input_seq)  # Shape: (batch_size, seq_len, vocab_size)
 
 print(output.shape)  # Output shape should be (2, 10, vocab_size)
-
+```
 Key Concepts Covered:
 	•	Self-Attention: This allows each word in a sequence to attend to other words in the sequence.
 	•	Multi-Head Attention: Attention is split into multiple heads to focus on different parts of the input.
