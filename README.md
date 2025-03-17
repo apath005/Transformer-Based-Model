@@ -51,17 +51,26 @@ This example showcases the architecture of a very simplified transformer model t
 
 For a real GPT-style model, it would involve much more complexity in terms of fine-tuning, optimizations, large datasets, and infrastructure. But this should give you a rough idea of how transformer models are structured.
 
+
 1. The Transformer Architecture
 
 The core innovation behind models like GPT is the transformer architecture, which was introduced in the paper “Attention is All You Need” by Vaswani et al. (2017). The transformer relies heavily on a mechanism called self-attention to process sequences of data (like text) in parallel, unlike previous models like RNNs (Recurrent Neural Networks), which process sequences sequentially.
 
+
 Key Components of the Transformer:
-	1.	Self-Attention Mechanism: This is the heart of the transformer. It allows each token (word or part of a word) to focus on (attend to) all other tokens in the sequence, making it possible to capture long-range dependencies. In simple terms, it allows the model to understand relationships between words in a sentence, regardless of their distance from each other.
-	2.	Multi-Head Attention: Instead of having a single attention mechanism, transformers use multiple attention heads, which enables the model to attend to different aspects of the input simultaneously. Each head processes the sequence independently, and their results are combined.
-	3.	Positional Encoding: Since transformers don’t process data sequentially, they need a way to encode the position of each token in the sequence. This is done using positional encodings, which are added to the input embeddings to give the model information about the position of each word.
-	4.	Feed-Forward Neural Network (FFNN): After attention layers, the model passes the data through a fully connected neural network (the feed-forward network), which allows it to learn non-linear relationships and further refine its understanding of the sequence.
-	5.	Layer Normalization and Residual Connections: These techniques help stabilize training and improve the model’s ability to learn. Each attention layer and feed-forward network is followed by a residual connection, meaning the output of the layer is added back to the original input, helping the gradient flow during training.
-	6.	Stacked Layers: Transformers are usually composed of many layers of attention and feed-forward networks. GPT, for example, has up to 96 layers in the largest models. Each layer refines the output further.
+	
+1.	Self-Attention Mechanism: This is the heart of the transformer. It allows each token (word or part of a word) to focus on (attend to) all other tokens in the sequence, making it possible to capture long-range dependencies. In simple terms, it allows the model to understand relationships between words in a sentence, regardless of their distance from each other.
+	
+2.	Multi-Head Attention: Instead of having a single attention mechanism, transformers use multiple attention heads, which enables the model to attend to different aspects of the input simultaneously. Each head processes the sequence independently, and their results are combined.
+	
+3.	Positional Encoding: Since transformers don’t process data sequentially, they need a way to encode the position of each token in the sequence. This is done using positional encodings, which are added to the input embeddings to give the model information about the position of each word.
+	
+4.	Feed-Forward Neural Network (FFNN): After attention layers, the model passes the data through a fully connected neural network (the feed-forward network), which allows it to learn non-linear relationships and further refine its understanding of the sequence.
+	
+5.	Layer Normalization and Residual Connections: These techniques help stabilize training and improve the model’s ability to learn. Each attention layer and feed-forward network is followed by a residual connection, meaning the output of the layer is added back to the original input, helping the gradient flow during training.
+	
+6.	Stacked Layers: Transformers are usually composed of many layers of attention and feed-forward networks. GPT, for example, has up to 96 layers in the largest models. Each layer refines the output further.
+
 
 2. Attention Mechanism in Detail
 
