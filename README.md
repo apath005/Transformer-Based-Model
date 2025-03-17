@@ -4,7 +4,7 @@ Simplified example of how a neural network model for natural language processing
 
 Here’s an extremely simplified version of a transformer-based model, which is a core part of models like GPT:
 
-'''
+```
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -42,7 +42,7 @@ src = torch.randint(0, vocab_size, (2, 10))
 output = model(src)
 
 print(output.shape)  # Expected output: (2, 10, vocab_size)
-'''
+``` 
 
 This example showcases the architecture of a very simplified transformer model that could be used for NLP tasks. It includes:
 	•	Embedding: Converts input tokens (word indices) into continuous vectors.
